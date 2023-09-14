@@ -30,6 +30,11 @@ class Comments
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
+    public function __toString(): string
+    {
+        return $this->city.' '.$this->year;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
