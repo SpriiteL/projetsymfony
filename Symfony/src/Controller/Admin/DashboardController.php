@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Comments;
+use App\Entity\Product;
+use App\Entity\Likes;
+use App\Entity\Notes;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -20,6 +23,9 @@ class DashboardController extends AbstractDashboardController
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
         $url = $routeBuilder->setController(CategoryCrudController::class)->generateUrl();
         $url = $routeBuilder->setController(CommentsCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(ProductCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(LikesCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(NotesCrudController::class)->generateUrl();
 
         return $this->redirect($url);
 
@@ -51,7 +57,10 @@ class DashboardController extends AbstractDashboardController
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
-        yield MenuItem::linkToCrud('Category', 'fas fa-comments', Category::class);
+        yield MenuItem::linkToCrud('Category', 'fas fa-category', Category::class);
         yield MenuItem::linkToCrud('Comments', 'fas fa-comments', Comments::class);
+        yield MenuItem::linkToCrud('Product', 'fas fa-product', Product::class);
+        yield MenuItem::linkToCrud('Likes', 'fas fa-likes', Likes::class);
+        yield MenuItem::linkToCrud('Notes', 'fas fa-notes', Notes::class);
     }
 }

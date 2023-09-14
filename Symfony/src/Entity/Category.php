@@ -28,10 +28,10 @@ class Category
         $this->products = new ArrayCollection();
     }
 
-    public function __toString(): string
+    /*public function __toString(): string
     {
        return $this->city.' '.$this->year;
-    }
+    }*/
 
     public function getId(): ?int
     {
