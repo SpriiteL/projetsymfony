@@ -23,6 +23,14 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $products;
 
+    public function __toString(): String{
+        $nameParts = [];
+        if($this->category_name){
+            $nameParts[] = $this->category_name;
+        }
+        return implode(' ', $nameParts);
+    }
+
     public function __construct()
     {
         $this->products = new ArrayCollection();

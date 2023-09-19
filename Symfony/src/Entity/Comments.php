@@ -35,6 +35,14 @@ class Comments
         return $this->city.' '.$this->year;
     }*/
 
+    public function __toString(): String{
+        $nameParts = [];
+        if($this->content){
+            $nameParts[] = $this->content;
+        }
+        return implode(' ', $nameParts);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

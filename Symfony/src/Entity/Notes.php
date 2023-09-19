@@ -29,6 +29,14 @@ class Notes
     #[ORM\ManyToOne(inversedBy: 'notes')]
     private ?Product $product = null;
 
+    public function __toString(): String{
+        $nameParts = [];
+        if($this->note){
+            $nameParts[] = $this->note;
+        }
+        return implode(' ', $nameParts);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
