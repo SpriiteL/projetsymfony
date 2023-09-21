@@ -18,16 +18,12 @@ class CommentsCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            // IdField::new('id'),
             TextField::new('users'),
             AssociationField::new('users')
                 ->setFormTypeOptions([
                     'by_reference' => false,
                 ]),
-            AssociationField::new('product')
-            ->setFormTypeOptions([
-                'by_reference' => false,
-            ]),
         ];
     }
 }
