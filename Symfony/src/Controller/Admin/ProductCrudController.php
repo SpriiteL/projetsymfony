@@ -32,6 +32,14 @@ class ProductCrudController extends AbstractCrudController
             ->setFormTypeOptions([
                 'by_reference' => false,
             ]),
+            AssociationField::new('users')
+            ->setFormTypeOptions([
+                'by_reference' => false,
+            ]),
+            AssociationField::new('likes')
+            ->setFormTypeOptions([
+                'by_reference' => false,
+            ]),
         ];
     }
 }

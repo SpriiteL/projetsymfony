@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Notes;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class NotesCrudController extends AbstractCrudController
 {
@@ -12,14 +15,19 @@ class NotesCrudController extends AbstractCrudController
         return Notes::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('users'),
+            AssociationField::new('users')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ]),
+            AssociationField::new('product')
+            ->setFormTypeOptions([
+                'by_reference' => false,
+            ]),
         ];
     }
-    */
 }

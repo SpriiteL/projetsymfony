@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 class CategoryCrudController extends AbstractCrudController
 {
@@ -27,14 +28,15 @@ class CategoryCrudController extends AbstractCrudController
         ;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('product'),
+            AssociationField::new('product')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ]),
         ];
     }
-    */
 }

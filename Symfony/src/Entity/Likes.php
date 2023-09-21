@@ -26,6 +26,14 @@ class Likes
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
+    public function __toString(): String{
+        $nameParts = [];
+        if($this->date_like){
+            $nameParts[] = $this->date_like;
+        }
+        return implode(' ', $nameParts);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
