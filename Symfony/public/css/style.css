@@ -3264,10 +3264,11 @@ ol {
   Contact
 -----------------------*/
 
-.formlogin{
-	display: flex;
-	width: 100%;
-	margin-right: -300%;
+.row-form{
+	background-color: #ffffff;
+	padding: 20px;
+	box-shadow: 0 0 1em rgb(1, 106, 148);
+	border-radius: 5px;
 }
 
 .contact__text .section-title {
@@ -3310,7 +3311,7 @@ ol {
 	height: 50px;
 	width: 100%;
 	border: 1px solid #e1e1e1;
-	padding-left: 20px;
+	/* padding-left: 20px; */
 	font-size: 15px;
 	color: #b7b7b7;
 	margin-bottom: 30px;
