@@ -18,18 +18,20 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                Vous êtes Connectez Avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se Déconnecter</a>
             </div>
         {% endif %}
              <div class="row-form">
+                <div class="img-formlogin">
                     <img src="{{asset('img/logoVW.png')}}" alt=""></a>
-                     <label for="inputEmail">Email</label>
-                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                     <label for="inputPassword">Password</label>
-                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-                     <button class="site-btn" type="submit">
-                        Se Connecter
-                    </button>
+                </div>
+                    <label for="inputEmail">Adresse Mail :</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                    <label for="inputPassword">Mot de Passe :</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    <button class="site-btn" type="submit">
+                    Se Connecter
+                </button>
              </div>
              <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}">

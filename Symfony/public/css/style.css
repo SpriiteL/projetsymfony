@@ -553,6 +553,10 @@ ol {
   Hero
 -----------------------*/
 
+.hero{
+	padding-bottom: 100px;
+}
+
 .hero__slider.owl-carousel .owl-item.active .hero__text h6 {
 	top: 0;
 	opacity: 1;
@@ -590,11 +594,20 @@ ol {
 
 .hero__items {
 	height: 800px;
+	width: 2000px;
 	padding-top: 230px;
 }
 
+.hero__text{
+	background-color: #ffffff;
+	width: 600px;
+	height: 500px;
+	padding: 15%;
+	border-radius: 15px;
+}
+
 .hero__text h6 {
-	color: #e53637;
+	color: #009fc7;
 	font-size: 14px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3314,7 +3327,7 @@ ol {
 	/* padding-left: 20px; */
 	font-size: 15px;
 	color: #b7b7b7;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 }
 
 .contact__form input::-webkit-input-placeholder {
@@ -3860,4 +3873,30 @@ ol {
 	.categories__text:before {
 		height: 250px;
 	}
+}
+
+.img-formlogin{
+	
+	padding: 14px 35px;
+}
+
+
+/* Style de la section avec la classe "mb-3" */
+.mb-3 {
+    margin-bottom: 3px; /* Espacement inférieur de 3 pixels */
+    padding: 10px; /* Rembourrage intérieur de 10 pixels */
+    background-color: #f0f0f0; /* Couleur d'arrière-plan grise */
+    border: 1px solid #0094c1; /* Bordure grise de 1 pixel */
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* Style du lien de déconnexion */
+.mb-3 a {
+    color: #0094c1; /* Couleur du lien bleu */
+    text-decoration: none; /* Supprimer le soulignement du lien */
+}
+
+/* Style du lien de déconnexion au survol */
+.mb-3 a:hover {
+    text-decoration: underline; /* Soulignement du lien au survol */
 }
