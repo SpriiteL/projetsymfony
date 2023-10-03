@@ -3915,13 +3915,16 @@ ol {
   .registerform h1 {
 	font-size: 30px;
 	text-align: center;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 	color: rgb(1, 106, 148);
   }
   
   /* Style form labels */
   .form-group label {
 	font-weight: bold;
+	display: block; /* Afficher les labels en tant que blocs */
+	margin-bottom: 5px; /* Ajouter un espace entre le label et l'input */
+	margin-right: 15px;
   }
   
   /* Style form inputs */
@@ -3931,8 +3934,9 @@ ol {
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
+	display: block; /* Afficher les champs en tant que blocs */
+	padding: 50px;
   }
-
   
   /* Add styles for form errors */
   .form-error {
@@ -3942,8 +3946,8 @@ ol {
   
   /* Style the checkbox label */
   .checkbox-label {
-	display: inline-block;
-	margin-left: 5px;
+	margin-left: 30px;
+	padding: 50px;
 	font-weight: normal;
   }
   
@@ -3952,15 +3956,27 @@ ol {
 	margin-right: 5px;
 	vertical-align: middle;
   }
-
-  .registerform input{
+  
+  .registerform input {
+	margin-bottom: 30px;
+	position: relative;
+	display: inline-block;
+	border: 1px solid;
+	border-color: #ccc;
+	width: 300px;
+	height: 35px;
+  }
+  
+  .registerform {
 	margin-bottom: 50px;
   }
 
-  .registerform{
-	margin-bottom: 50px;
+  .registerform .site-btn{
+	margin-top: 20px;
+  }
+
+  .registerform label{
+	margin-right: 200px;
   }
   
-  /* Additional styling for responsive design can be added here */
-  
-  
+  /* Additional styling for responsive design can be added here */ 

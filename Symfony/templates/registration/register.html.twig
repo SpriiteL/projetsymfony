@@ -1,7 +1,6 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
-{% block title %}Register{% endblock %}
-
+<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
 {% block body %}
 <div class="registerform">
     <form class="register-form">
@@ -31,18 +30,3 @@
     </form>
 </div>
 {% endblock %}
-
-{# <form action="#">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
-                                </div>
-                                <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button type="submit" class="site-btn">Send Message</button>
-                                </div>
-                            </div>
-                        </form> #}
