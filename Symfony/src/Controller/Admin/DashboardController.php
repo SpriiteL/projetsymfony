@@ -50,14 +50,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('App');
+            ->setTitle('VinWish');
     }
 
     public function configureMenuItems(): iterable
     {
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
+        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app_public');
         yield MenuItem::linkToCrud('Category', 'fas fa-category', Category::class);
         yield MenuItem::linkToCrud('Comments', 'fas fa-comments', Comments::class);
         yield MenuItem::linkToCrud('Product', 'fas fa-product', Product::class);
