@@ -11,11 +11,13 @@ use Twig\Environment;
 class PublicController extends AbstractController
 {
     #[Route('/', name: 'app_public')]
-    public function index(Environment $twig, ProductRepository $productRepository ): Response
+    public function index(ProductRepository $productRepository): Response
     {
-        return new Response($twig->render('public/index.html.twig', [
-            'public' => $productRepository->findAll(),
-        ]));
+        $products = $productRepository->findAll();
+
+        return $this->render('public/index.html.twig', [
+            'products' => $products,
+        ]);
     }
 
     #[Route('/shop', name: 'app_shop')]
@@ -46,6 +48,14 @@ class PublicController extends AbstractController
     public function contact(): Response
     {
         return $this->render('public/contact.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
+
+    #[Route('/detail_product', name: 'app_detail')]
+    public function detail(): Response
+    {
+        return $this->render('public/detail.html.twig', [
             'controller_name' => 'PublicController',
         ]);
     }

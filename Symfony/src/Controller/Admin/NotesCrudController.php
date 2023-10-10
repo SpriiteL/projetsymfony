@@ -18,8 +18,6 @@ class NotesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('users'),
             AssociationField::new('users')
                 ->setFormTypeOptions([
                     'by_reference' => false,
