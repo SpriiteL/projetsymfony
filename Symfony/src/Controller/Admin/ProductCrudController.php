@@ -7,6 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -15,31 +18,22 @@ class ProductCrudController extends AbstractCrudController
         return Product::class;
     }
 
-     public function configureFields(string $pageName): iterable
+    public function configureFields(string $pageName): iterable
     {
         return [
-            // IdField::new('id'),
-            TextField::new('category'),
+            TextField::new('title'),
+            TextField::new('description'),
+            TextField::new('color'),
+            TextField::new('condition_product'),
+            MoneyField::new('price')
+                ->setCurrency('EUR')
+                ->setFormTypeOptions(['currency' => 'EUR']),
+            AssociationField::new('users'),
             AssociationField::new('category')
                 ->setFormTypeOptions([
                     'by_reference' => false,
                 ]),
-            AssociationField::new('comments')
-            ->setFormTypeOptions([
-                'by_reference' => false,
-            ]),
-            AssociationField::new('notes')
-            ->setFormTypeOptions([
-                'by_reference' => false,
-            ]),
-            AssociationField::new('users')
-            ->setFormTypeOptions([
-                'by_reference' => false,
-            ]),
-            AssociationField::new('likes')
-            ->setFormTypeOptions([
-                'by_reference' => false,
-            ]),
         ];
     }
+    
 }

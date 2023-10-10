@@ -24,6 +24,18 @@ class CommentsCrudController extends AbstractCrudController
                 ->setFormTypeOptions([
                     'by_reference' => false,
                 ]),
+            // IdField::new('id'),
+            TextField::new('content'),
+            AssociationField::new('content')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ]),
+            // IdField::new('id'),
+            TextField::new('product_id'),
+            AssociationField::new('product_id')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ]),
         ];
     }
 }
