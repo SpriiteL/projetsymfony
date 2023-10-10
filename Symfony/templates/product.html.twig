@@ -1,5 +1,5 @@
 <!-- Produits -->
-    <section class="product spad">
+     <section class="product spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -10,14 +10,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="row product__filter">
+           {# <div class="row product__filter">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{asset('img/product/product-1.jpg')}}" style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
                             <span class="label">1j</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                 {# <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li> #}
+                                  <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li> 
                                 <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg" style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                {# <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li> #}
+                                 <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li> 
                                 <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
@@ -258,31 +258,31 @@
                             <h5>65€</h5>
                         </div>
                     </div>
-                </div>
-                {% for product in products %}
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        <div class="product__item sale">
-                            <div class="product__item__pic set-bg" data-setbg="{{product.imagefile}}" style="background-image: url(&quot;img/product/{{product.imagefile}}&quot;);">
-                                <ul class="product__hover">
-                                    <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                    <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                                </ul>
+        </div> #}
+            {% for product in products %}
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="{{product.imagefile}}" style="background-image: url(&quot;img/product/{{product.imagefile}}&quot;);">
+                            <ul class="product__hover">
+                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
+                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>{{ product.title }}</h6>
+                            <a href="{{path('app_detail')}}" class="add-cart">Contactez-le</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
                             </div>
-                            <div class="product__item__text">
-                                <h6>{{ product.title }}</h6>
-                                <a href="{{path('app_detail')}}" class="add-cart">Contactez-le</a>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5>{{ product.price }}€</h5>
-                            </div>
+                            <h5>{{ product.price }}€</h5>
                         </div>
                     </div>
-                {% endfor %}
+                </div>
+            {% endfor %}
             </div>
         </div>
     </section>
