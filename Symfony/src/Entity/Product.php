@@ -51,6 +51,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Photos::class)]
     private Collection $photos;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagefile = null;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -264,6 +267,18 @@ class Product
                 $photo->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImagefile(): ?string
+    {
+        return $this->imagefile;
+    }
+
+    public function setImagefile(?string $imagefile): static
+    {
+        $this->imagefile = $imagefile;
 
         return $this;
     }
