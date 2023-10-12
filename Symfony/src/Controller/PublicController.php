@@ -54,7 +54,7 @@ class PublicController extends AbstractController
 
     #[Route('/detail_product/{id}', name: 'app_detail')]
     public function detailProduct($id, ProductRepository $productRepository): Response
-{
+    {
     $products = $productRepository->findAll();
 
     return $this->render('public/detail.html.twig', [

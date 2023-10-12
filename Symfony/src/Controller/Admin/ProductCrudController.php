@@ -23,7 +23,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('title'),
             TextField::new('description'),
             ImageField::new('imagefile')
-                ->setUploadDir('public/img/product/'),
+                ->setBasePath('/img/product/'),
             TextField::new('color'),
             TextField::new('condition_product'),
             MoneyField::new('price')
