@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,12 +54,10 @@ class PublicController extends AbstractController
     }
 
     #[Route('/detail_product/{id}', name: 'app_detail')]
-    public function detailProduct($id, ProductRepository $productRepository): Response
+    public function detailProduct(Environment $twig, Product $product): Response
     {
-    $products = $productRepository->findAll();
-
-    return $this->render('public/detail.html.twig', [
-        'products' => $products,
-    ]);
+        return new Response($twig->render('public/detail.html.twig', [
+            'product' => $product,
+    ]));
     }
 }
