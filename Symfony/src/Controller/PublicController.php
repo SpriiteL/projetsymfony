@@ -52,7 +52,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-    #[Route('/detail_product', name: 'app_detail')]
+    #[Route('/detail_product/{id}', name: 'app_detail')]
     public function detail(): Response
     {
         return $this->render('public/detail.html.twig', [
