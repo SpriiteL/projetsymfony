@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Form\SellingFormType;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -60,4 +62,44 @@ class PublicController extends AbstractController
             'product' => $product,
     ]));
     }
+
+    // #[Route('/sell', name: 'app_sell')]
+    // public function sell(Request $request): Response
+    // {
+    //     $product = new Product(); 
+    //     $form = $this->createForm(SellingFormType::class, $product);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //     }
+
+    //     return $this->render('sell.html.twig', [
+    //         'sellingform' => $form->createView(),
+    //     ]);
+    // }
+
+    #[Route('/sell', name: 'app_sell')]
+    public function sell(Request $request): Response
+    {
+        $product = new Product();
+        $form = $this->createForm(SellingFormType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Gérez le téléchargement de l'image ici (enregistrez le fichier sur le serveur si nécessaire)
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le produit a été ajouté avec succès.');
+
+            return $this->redirectToRoute('product_index'); // Redirigez vers la liste des produits
+        }
+
+        return $this->render('sell.html.twig', [
+            'sellingform' => $form->createView(),
+        ]);
+    }
 }
+
