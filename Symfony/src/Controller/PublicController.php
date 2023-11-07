@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\SellingFormType;
 use App\Entity\Product;
+use App\Entity\Users;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,17 @@ class PublicController extends AbstractController
     {
         return $this->render('public/index.html.twig', [
             'controller_name' => 'PublicController',
+        ]);
+    }
+
+    #[Route('/vendeur/{id}', name: 'app_vendeur')]
+    public function vendeur(Environment $twig, Users $users, ProductRepository $productRepository): Response
+    {
+        $products = $productRepository->findBy(['users' => $users]);
+
+        return $this->render('public/vendeur.html.twig', [
+            'users' => $users,
+            'products' => $products,
         ]);
     }
 
@@ -73,14 +85,25 @@ class PublicController extends AbstractController
         $formulaireVente->handleRequest($request);
 
         if ($formulaireVente->isSubmitted() && $formulaireVente->isValid()) {
+            $file = $formulaireVente['imagefile']->getData();
+            $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/img/product';
+            
+            if (!is_dir($uploadDirectory)) {
+                // Créez le répertoire s'il n'existe pas déjà
+                if (!mkdir($uploadDirectory, 0777, true)) {
+                    return new Response('Impossible de créer le répertoire de destination');
+                }
+            }
+            $newFileName = '/public/img/product/image.jpg' ;
+            $file->move($uploadDirectory, $newFileName);
             $em->persist($product);
             $em->flush();
-
-            return new Response('produit ajouté');
+            return new Response('Produit ajouté');
         }
+        
 
         return $this->render('public/sell.html.twig', [
             'sellingform' => $formulaireVente->createView(),
         ]);
     }
-}
+}   

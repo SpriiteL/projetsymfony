@@ -88,6 +88,7 @@
                                     <i class="fa fa-star-o"></i>
                                     <span> - 5 Reviews</span>
                                 </div>
+                                <a href="{{ path('app_vendeur', {'id': product.users.id}) }}" class="userdetail">{{ product.users }}</a>
                                 <h3>{{product.price}}€</h3>
                                 <p>{{product.description}}</p>
                                 <div class="product__details__cart__option">

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <hr />
+    <h1 class="usernamestyle">{{ users.username }}</h1>
+    <hr />
+<div class="productvendeur">
+    <div class="row product_filter">
+                {% for product in products %}
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        <div class="product__item sale">
+                            <div class="product__item__pic set-bg" data-setbg="/img/product/{{product.imagefile}}" style="background-image: url(&quot;/img/product/{{product.imagefile}}&quot;);">
+                                <ul class="product__hover">
+                                    <li><a href="#"><img src="{{asset ('img/icon/heart.png')}}" alt=""></a></li>
+                                    <li><a href="#"><img src="{{asset ('img/icon/search.png')}}" alt=""></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <h6>{{ product.title }}</h6>
+                                <a href="{{ path ('app_detail', {'id': product.id}) }}" class="add-cart">+ de détails</a>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <h5>{{ product.price }}€</h5>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+    </div>
+</div>
+               
+{% endblock %}
