@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\SellingFormType;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,11 +65,22 @@ class PublicController extends AbstractController
     }
 
     #[Route('/sell', name: 'sell')]
-    public function sell(): Response
+    public function sell(Request $request, EntityManagerInterface $em): Response
     {
+        $product = new Product();
+        $formulaireVente = $this->createForm(SellingFormType::class, $product);
+
+        $formulaireVente->handleRequest($request);
+
+        if ($formulaireVente->isSubmitted() && $formulaireVente->isValid()) {
+            $em->persist($product);
+            $em->flush();
+
+            return new Response('produit ajouté');
+        }
+
         return $this->render('public/sell.html.twig', [
-            'controller_name' => 'PublicController',
+            'sellingform' => $formulaireVente->createView(),
         ]);
     }
 }
-
