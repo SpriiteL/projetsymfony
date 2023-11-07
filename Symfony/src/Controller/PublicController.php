@@ -63,42 +63,11 @@ class PublicController extends AbstractController
     ]));
     }
 
-    // #[Route('/sell', name: 'app_sell')]
-    // public function sell(Request $request): Response
-    // {
-    //     $product = new Product(); 
-    //     $form = $this->createForm(SellingFormType::class, $product);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //     }
-
-    //     return $this->render('sell.html.twig', [
-    //         'sellingform' => $form->createView(),
-    //     ]);
-    // }
-
-    #[Route('/sell', name: 'app_sell')]
-    public function sell(Request $request): Response
+    #[Route('/sell', name: 'sell')]
+    public function sell(): Response
     {
-        $product = new Product();
-        $form = $this->createForm(SellingFormType::class, $product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Gérez le téléchargement de l'image ici (enregistrez le fichier sur le serveur si nécessaire)
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($product);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Le produit a été ajouté avec succès.');
-
-            return $this->redirectToRoute('product_index'); // Redirigez vers la liste des produits
-        }
-
-        return $this->render('sell.html.twig', [
-            'sellingform' => $form->createView(),
+        return $this->render('public/sell.html.twig', [
+            'controller_name' => 'PublicController',
         ]);
     }
 }
