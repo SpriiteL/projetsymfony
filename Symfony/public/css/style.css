@@ -3936,7 +3936,6 @@ ol {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	display: block; /* Afficher les champs en tant que blocs */
-	padding: 50px;
   }
   
   /* Add styles for form errors */

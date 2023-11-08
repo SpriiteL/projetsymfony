@@ -44,6 +44,9 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{ path('app_public') }}">Accueil</a></li>
+                            <li><a href="{{ path('app_category', {'id': 3 }) }}">Homme</a></li>
+                            <li><a href="{{ path('app_category', {'id': 1 }) }}">Femme</a></li>
+                            <li><a href="{{ path('app_category', {'id': 4 }) }}">Enfant</a></li>
                             <li><a href="{{path('app_contact')}}">Contact</a></li>
                         </ul>
                     </nav>

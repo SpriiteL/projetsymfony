@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\SellingFormType;
 use App\Entity\Product;
+use App\Entity\Category;
 use App\Entity\Users;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,6 +41,17 @@ class PublicController extends AbstractController
 
         return $this->render('public/vendeur.html.twig', [
             'users' => $users,
+            'products' => $products,
+        ]);
+    }
+
+    #[Route('/category{id}', name: 'app_category')]
+    public function homme(Environment $twig, Category $category, ProductRepository $productRepository): Response
+    {
+        $products = $productRepository->findBy(['category' => $category]);
+
+        return $this->render('public/homme.html.twig', [
+            'category' => $category,
             'products' => $products,
         ]);
     }
