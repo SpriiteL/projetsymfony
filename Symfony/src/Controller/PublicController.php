@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Twig\Environment;
 
 class PublicController extends AbstractController
@@ -89,6 +90,8 @@ class PublicController extends AbstractController
     ]));
     }
 
+    
+
     #[Route('/sell', name: 'sell')]
     public function sell(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
@@ -100,14 +103,14 @@ class PublicController extends AbstractController
         if ($formulaireVente->isSubmitted() && $formulaireVente->isValid()) {
             $file = $formulaireVente['imagefile']->getData();
             $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/img/product';
-            
+
             if (!is_dir($uploadDirectory)) {
-                
+
                 if (!mkdir($uploadDirectory, 0744, true)) {
                     return new Response('Impossible de créer le répertoire de destination');
                 }
             }
-            
+
             $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $slugger->slug($originalFilename);
             $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
@@ -119,11 +122,19 @@ class PublicController extends AbstractController
             $em->persist($product);
             $em->flush();
 
-            return new Response('Produit ajouté');
+            return new JsonResponse(['message' => 'Mise en vente realisee'], JsonResponse::HTTP_OK);
         }
 
         return $this->render('public/sell.html.twig', [
             'sellingform' => $formulaireVente->createView(),
+        ]);
+    }
+
+    #[Route('/profile', name: 'app_profile')]
+    public function profile(): Response
+    {
+        return $this->render('public/profile.html.twig', [
+            'controller_name' => 'PublicController',
         ]);
     }
 }

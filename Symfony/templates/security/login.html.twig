@@ -18,7 +18,9 @@
 
         {% if app.user %}
             <div class="mb-3">
-                Vous êtes connecté avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se Déconnecter</a>
+                {% if app.user %}
+                    Vous êtes connecté avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se Déconnecter</a>
+                {% endif %}
             </div>
         {% endif %}
              <div class="row-form">
@@ -30,8 +32,8 @@
                     <label for="inputPassword">Mot de Passe :</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
                     <button class="site-btn" type="submit">
-                    Se Connecter
-                </button>
+                        <a href="{{ path('app_profile') }}">Se Connecter</a>
+                    </button>
              </div>
              <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}">
