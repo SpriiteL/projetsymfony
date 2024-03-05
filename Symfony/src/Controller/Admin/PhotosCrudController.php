@@ -18,7 +18,7 @@ class PhotosCrudController extends AbstractCrudController
 {
     return [
         ImageField::new('filename')
-            ->setUploadDir('public/img/product/'),
+            ->setUploadDir('public/product'),
     ];
 }
 

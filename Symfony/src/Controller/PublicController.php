@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Twig\Environment;
 
 class PublicController extends AbstractController
@@ -89,7 +90,7 @@ class PublicController extends AbstractController
     }
 
     #[Route('/sell', name: 'sell')]
-    public function sell(Request $request, EntityManagerInterface $em): Response
+    public function sell(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
         $product = new Product();
         $formulaireVente = $this->createForm(SellingFormType::class, $product);
@@ -101,21 +102,28 @@ class PublicController extends AbstractController
             $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/img/product';
             
             if (!is_dir($uploadDirectory)) {
-                // Créez le répertoire s'il n'existe pas déjà
-                if (!mkdir($uploadDirectory, 0777, true)) {
+                
+                if (!mkdir($uploadDirectory, 0744, true)) {
                     return new Response('Impossible de créer le répertoire de destination');
                 }
             }
-            $newFileName = '/public/img/product/image.jpg' ;
-            $file->move($uploadDirectory, $newFileName);
+            
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+            $file->move($uploadDirectory, $newFilename);
+
+            $product->setImagefile($newFilename);
+
             $em->persist($product);
             $em->flush();
+
             return new Response('Produit ajouté');
         }
-        
 
         return $this->render('public/sell.html.twig', [
             'sellingform' => $formulaireVente->createView(),
         ]);
     }
-}   
+}
