@@ -19,7 +19,8 @@
         {% if app.user %}
             <div class="mb-3">
                 {% if app.user %}
-                    Vous êtes connecté avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se Déconnecter</a>
+                    <a href="app_profile"></a>
+                    {# Vous êtes connecté avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se Déconnecter</a> #}
                 {% endif %}
             </div>
         {% endif %}
@@ -31,9 +32,8 @@
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                     <label for="inputPassword">Mot de Passe :</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-                    <button class="site-btn" type="submit">
-                        <a href="{{ path('app_profile') }}">Se Connecter</a>
-                    </button>
+                    <a href="{{ path('app_register')}}" class="accesregister">Vous n'avez pas encore de compte ?</a>
+                    <button class="site-btn" type="submit">Se Connecter</button>
              </div>
              <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}">

@@ -48,7 +48,7 @@
                                     <h6>Saison des ventes</h6>
                                     <h2>Vend ! Prêt à faire le tri ?</h2>
                                     <p>Ici - C'est le particulier qui crée l'économie !</p>
-                                    <a href="{{ path('sell') }}" class="primary-btn">Vends Maintenant <span class="arrow_right"></span></a>
+                                    <a href="{{ app.user ? path('sell') : path('app_login') }}" class="primary-btn">Vends Maintenant <span class="arrow_right"></span></a>
                                     <div class="hero__social">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
                                         <a href="#"><i class="fa fa-twitter"></i></a>

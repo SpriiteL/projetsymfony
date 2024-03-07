@@ -3881,6 +3881,14 @@ ol {
 	padding: 14px 35px;
 }
 
+.accesregister {
+	color: rgb(255, 0, 0);
+}
+
+.accesregister:hover {
+	color: black;
+}
+
 
 /* Style de la section avec la classe "mb-3" */
 .mb-3 {
@@ -4095,4 +4103,70 @@ hr {
 .userdetail:hover {
 	color: #0a2558;
   }
-  
+
+  /* Profile */
+
+.profile-container {
+max-width: 600px;
+margin: 0 auto;
+padding: 20px;
+border: 1px solid #007bff; /* Bleu pour la couleur de la bordure */
+border-radius: 5px;
+text-align: center;
+background-color: #f0f8ff; /* Utilisation d'une teinte de bleu clair pour l'arrière-plan */
+}
+
+.textprofile {
+color: #007bff; /* Utilisation du bleu pour la couleur du texte */
+margin-bottom: 15px; /* Ajout d'un espace entre les paragraphes */
+}
+
+.logout-link {
+display: inline-block;
+color: #fff;
+background-color: #007bff; /* Utilisation du bleu pour le fond du lien de déconnexion */
+padding: 10px 20px;
+text-decoration: none;
+border-radius: 5px;
+}
+
+.logout-link:hover {
+background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
+}
+
+  /* Profile */
+
+  .profile-container {
+    max-width: 600px;
+	height: 400px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #007bff; /* Bleu pour la couleur de la bordure */
+    border-radius: 5px;
+    text-align: center;
+    background-color: #e1e1e1; /* Utilisation d'une teinte de bleu clair pour l'arrière-plan */
+    }
+    
+    .textprofile {
+    color: #007bff; /* Utilisation du bleu pour la couleur du texte */
+    margin-bottom: 15px; /* Ajout d'un espace entre les paragraphes */
+    }
+    
+    .logout-link {
+    display: inline-block;
+    color: #fff;
+    background-color: #007bff; /* Utilisation du bleu pour le fond du lien de déconnexion */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    }
+    
+    .logout-link:hover {
+    background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
+    }
+
+	.pprofile{
+		height: 100px;
+		width: 100px;
+	}
+    

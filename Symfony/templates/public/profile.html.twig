@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Vous êtes connecté avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se Déconnecter</a></h1>
+<div class="profile-container">
+    <img src="{{ asset('img/pprofile.png') }}" class="pprofile">
+    <p class="textprofile">{{ app.user.username }}</p>
+    <p class="textprofile">C'est votre profil. Vous êtes connecté en tant que {{ app.user.username }}.</p>
+    <a href="{{ path('app_logout') }}" class="logout-link">Se Déconnecter</a>
+</div>
 {% endblock %}
