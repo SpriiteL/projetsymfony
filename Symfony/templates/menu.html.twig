@@ -55,7 +55,9 @@
                     <div class="header__nav__option">
                         {# <a href="#" class="search-switch"><img src="{{asset('img/icon/search.png')}}" alt=""></a>
                         <a href="#"><img src="{{asset('img/icon/heart.png')}}" alt=""></a> #}
-                        <a href="{{app.user ? path('app_profile') : path('app_login')}}"><img src="{{asset('img/icon/login.png')}}" alt=""></a>
+                        <a href="{{app.user ? path('app_profile') : path('app_login')}}">
+                            <img src="{{app.user ? asset('img/pprofile.png') : asset('img/icon/login.png')}}" alt="" style="width: 20px; height: auto;">
+                        </a>
                     </div>
                 </div>
             </div>

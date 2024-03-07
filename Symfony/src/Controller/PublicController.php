@@ -131,10 +131,17 @@ class PublicController extends AbstractController
     }
 
     #[Route('/profile', name: 'app_profile')]
-    public function profile(): Response
+    public function profile(ProductRepository $productRepository): Response
     {
         return $this->render('public/profile.html.twig', [
             'controller_name' => 'PublicController',
+        ]);
+    }
+
+    #[Route('/editprofile', name: 'app_edit_profile')]
+    public function editProfile(): Response
+    {
+        return $this->render('public/editprofile.html.twig', [
         ]);
     }
 }

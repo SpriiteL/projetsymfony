@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="edit-profile-form">
+    <form method="post">
+        <h1>Modifier le profil</h1>
+
+        {{ form_errors(editForm) }}
+
+        {{ form_start(editForm) }}
+            {{ form_row(editForm.name, {
+                label: 'Nom'
+            }) }}
+            {{ form_row(editForm.username, {
+                label: 'Nom Utilisateur'
+            }) }}
+            {{ form_row(editForm.email, {
+                label: 'Adresse Mail'
+            }) }}
+            {{ form_row(editForm.plainPassword, {
+                label: 'Mot de passe actuel'
+            }) }}
+            {{ form_row(editForm.newPassword, {
+                label: 'Nouveau mot de passe',
+                required: false
+            }) }}
+            {{ form_row(editForm.agreeTerms, {
+                label: 'Accepter les Termes '
+            }) }}
+
+            <button type="submit" class="site-btn">Modifier le profil</button>
+        {{ form_end(editForm) }}
+    </form>
+</div>
+{% endblock %}

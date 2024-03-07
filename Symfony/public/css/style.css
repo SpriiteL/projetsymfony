@@ -1523,7 +1523,6 @@ ol {
 	text-align: center;
 	background: #f3f2ee;
 	padding: 40px 0 60px;
-	margin-bottom: 100px;
 }
 
 .product__details__pic .nav-tabs {
@@ -1625,11 +1624,14 @@ ol {
 
 .product__details__text {
 	text-align: center;
+	background-color: white;
+	padding: 80px;
 }
 
 .product__details__text h4 {
 	color: #111111;
 	font-weight: 700;
+	font-size: 50px;
 	margin-bottom: 10px;
 }
 
@@ -4154,6 +4156,7 @@ background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
     
     .logout-link {
     display: inline-block;
+	margin: 10px;
     color: #fff;
     background-color: #007bff; /* Utilisation du bleu pour le fond du lien de déconnexion */
     padding: 10px 20px;
@@ -4168,5 +4171,10 @@ background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
 	.pprofile{
 		height: 100px;
 		width: 100px;
+		position: relative;
 	}
-    
+
+	.pprofile:hover{
+		height: 110px;
+		width: auto;
+	}
