@@ -56,7 +56,11 @@
                         {% if app.user %}
                             <div class="dropdown">
                                 <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <img src="{{ asset('img/icon/admin.png') }}" alt="" style="width: 20px; height: auto;">
+                                {% else %}
                                     <img src="{{ asset('img/pprofile.png') }}" alt="" style="width: 20px; height: auto;">
+                                {% endif %}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <p class="menuder">ACTIONS</p>
