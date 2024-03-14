@@ -53,12 +53,30 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        {# <a href="#" class="search-switch"><img src="{{asset('img/icon/search.png')}}" alt=""></a>
-                        <a href="#"><img src="{{asset('img/icon/heart.png')}}" alt=""></a> #}
-                        <a href="{{app.user ? path('app_profile') : path('app_login')}}">
-                            <img src="{{app.user ? asset('img/pprofile.png') : asset('img/icon/login.png')}}" alt="" style="width: 20px; height: auto;">
-                        </a>
+                        {% if app.user %}
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="{{ asset('img/pprofile.png') }}" alt="" style="width: 20px; height: auto;">
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <p class="menuder">ACTIONS</p>
+                                    <a class="dropdown-item" href="{{ path('app_profile') }}">Mon compte</a>
+                                    <a class="dropdown-item" href="{{ path('app_favoris') }}">Favoris</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <p class="menuder">ADMIN</p>
+                                        <a class="dropdown-item" href="{{ path('admin')}}">AdminPAD</a>
+                                    {% endif %}
+                                    <p class="menuder">AUTRES</p>
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ path('app_login') }}">
+                                <img src="{{ asset('img/icon/login.png') }}" alt="" style="width: 20px; height: auto;">
+                            </a>
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>

@@ -7,6 +7,6 @@
     <a href="{{path('app_edit_profile')}}" class="logout-link">Modifier le profil</a>
     <p class="textprofile">{{ app.user.username }}</p>
     <p class="textprofile">C'est votre profil. Vous êtes connecté en tant que {{ app.user.username }}.</p>
-    <a href="{{ path('app_logout') }}" class="logout-link">Se Déconnecter</a>
+    <p>Vous n'êtes pas {{app.user.username}} ? <a href="{{ path('app_logout') }}" class="logout">se deconnecter</a></p>
 </div>
 {% endblock %}

@@ -144,4 +144,13 @@ class PublicController extends AbstractController
         return $this->render('public/editprofile.html.twig', [
         ]);
     }
+
+    #[Route('/favoris', name: 'app_favoris')]
+    public function favoris(): Response
+    {
+        return $this->render('public/favoris.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
+
 }
