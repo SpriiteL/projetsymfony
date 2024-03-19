@@ -1,12 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    {% for favori in favoris %}
-        <div class="item">
-            <h2>{{ favori.products.title }}</h2>
-            <!-- other product details... -->
-        </div>
-    {% endfor %}
-
+<hr />
+<h1 class="usernamestyle">{{ app.user.username }}</h1>
+<hr />
+<div class="productvendeur">
+    <div class="row product_filter">
+        {% for favori in favoris %}
+            <div class="col-lg-2 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="product__item sale">
+                    <div class="product__item__pic set-bg" data-setbg="/img/product/{{favori.products.imagefile}}" style="background-image: url(&quot;/img/product/{{favori.products.imagefile}}&quot;);">
+                        <ul class="product__hover">
+                            <li><a href="#"><img src="{{asset ('img/icon/heart.png')}}" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6>{{ favori.products.title }}</h6>
+                        <a href="{{ path ('app_detail', {'id': favori.products.id}) }}" class="add-cart">+ de détails</a>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <h5>{{ favori.products.price }}€</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
