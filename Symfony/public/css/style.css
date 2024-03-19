@@ -4112,13 +4112,14 @@ hr {
 
 .profile-container {
 width: 400px;
+
 height: 0 auto;
-margin: 0 auto;
+margin-bottom: 30px;
 padding: 20px;
-border: 1px solid #007bff; /* Bleu pour la couleur de la bordure */
+border: 1px solid #e5e5e5; /* Bleu pour la couleur de la bordure */
 border-radius: 5px;
 text-align: center;
-background-color: #f0f8ff; /* Utilisation d'une teinte de bleu clair pour l'arrière-plan */
+background-color: #ffffff; /* Utilisation d'une teinte de bleu clair pour l'arrière-plan */
 }
 
 .textprofile {
@@ -4142,15 +4143,14 @@ background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
   /* Profile */
 
   .profile-container {
-    max-width: 600px;
-	height: 400px;
-    margin: 10px auto;
+    width: 400px;
+    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #007bff; /* Bleu pour la couleur de la bordure */
+    border: 1px solid #e5e5e5;
     border-radius: 5px;
     text-align: center;
-    background-color: #ffffff; /* Utilisation d'une teinte de bleu clair pour l'arrière-plan */
-    }
+    background-color: #f0f8ff;
+}
     
     .textprofile {
     color: #007bff; /* Utilisation du bleu pour la couleur du texte */

@@ -55,7 +55,7 @@
                     <div class="header__nav__option">
                         {% if app.user %}
                             <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: solid 1px">
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <img src="{{ asset('img/icon/admin.png') }}" alt="" style="width: 20px; height: auto;">
                                 {% else %}
