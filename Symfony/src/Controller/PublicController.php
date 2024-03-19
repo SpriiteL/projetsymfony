@@ -85,11 +85,28 @@ class PublicController extends AbstractController
     }
 
     #[Route('/detail_product/{id}', name: 'app_detail')]
-    public function detailProduct(Environment $twig, Product $product): Response
+    public function detail($id, ProductRepository $productRepository, FavorisRepository $favorisRepository)
     {
-        return new Response($twig->render('public/detail.html.twig', [
+        $product = $productRepository->find($id);
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer les produits favoris de l'utilisateur
+        $favorisProducts = [];
+        if ($user) {
+            $favoris = $favorisRepository->findBy(['users' => $user]);
+            foreach ($favoris as $favori) {
+                $favorisProducts[] = $favori->getProducts();
+            }
+        }
+
+        // Passer les produits favoris à la vue
+        return $this->render('public/detail.html.twig', [
             'product' => $product,
-    ]));
+            'favoris' => $favoris,
+            'favorisProducts' => $favorisProducts,
+        ]);
     }
 
     
