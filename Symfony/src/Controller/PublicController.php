@@ -212,4 +212,18 @@ class PublicController extends AbstractController
         ]);
     }
 
+    #[Route('/TetC', name: 'app_tetc')]
+    public function TetC(): Response
+    {
+        return $this->render('public/mentionslegales/TetC.html.twig', [
+        ]);
+    }
+
+    #[Route('/cookies', name: 'app_cookies')]
+    public function cookies(): Response
+    {
+        return $this->render('public/mentionslegales/cookies.html.twig', [
+        ]);
+    }
+
 }
