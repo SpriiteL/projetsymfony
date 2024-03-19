@@ -20,6 +20,8 @@ use Twig\Environment;
 
 class PublicController extends AbstractController
 {
+   
+// Accueil
     #[Route('/', name: 'app_public')]
     public function index(ProductRepository $productRepository): Response
     {
@@ -37,7 +39,7 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
-
+// Produit vendu par la personne
     #[Route('/vendeur/{id}', name: 'app_vendeur')]
     public function vendeur(Environment $twig, Users $users, ProductRepository $productRepository): Response
     {
@@ -49,6 +51,7 @@ class PublicController extends AbstractController
         ]);
     }
 
+// Categories
     #[Route('/category{id}', name: 'app_category')]
     public function homme(Environment $twig, Category $category, ProductRepository $productRepository): Response
     {
@@ -75,7 +78,7 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
-
+// Contact
     #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
     {
@@ -83,7 +86,7 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
-
+// Detail produit
     #[Route('/detail_product/{id}', name: 'app_detail')]
     public function detail($id, ProductRepository $productRepository, FavorisRepository $favorisRepository)
     {
@@ -110,7 +113,7 @@ class PublicController extends AbstractController
     }
 
     
-
+// vente des produits formulaire
     #[Route('/sell', name: 'sell')]
     public function sell(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
@@ -148,7 +151,7 @@ class PublicController extends AbstractController
             'sellingform' => $formulaireVente->createView(),
         ]);
     }
-
+// profile
     #[Route('/profile', name: 'app_profile')]
     public function profile(ProductRepository $productRepository): Response
     {
@@ -163,7 +166,7 @@ class PublicController extends AbstractController
         return $this->render('public/editprofile.html.twig', [
         ]);
     }
-
+// favoris
     #[Route('/favoris', name: 'app_favoris')]
     public function favoris(EntityManagerInterface $em, FavorisRepository $favorisRepository): Response
     {
@@ -200,6 +203,13 @@ class PublicController extends AbstractController
 
         // redirect to the favoris page
         return $this->redirectToRoute('app_favoris');
+    }
+// mentions legales
+    #[Route('/pcfdtl', name: 'app_politiquecfdtl')]
+    public function politiquecfdtl(): Response
+    {
+        return $this->render('public/mentionslegales/politiqueconfidentialites.html.twig', [
+        ]);
     }
 
 }

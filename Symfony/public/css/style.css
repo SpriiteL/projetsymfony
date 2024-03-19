@@ -4197,3 +4197,37 @@ background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
 		/* styles for the active favoris button */
 		color: red !important;
 	}
+
+	.cfdtl {
+		width: 50%;
+		margin: 0 auto;
+		font-family: Arial, sans-serif;
+		line-height: 1.6;
+		color: #333;
+	}
+	
+	.cfdtl h1 {
+		color: #444;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	
+	.cfdtl h2 {
+		color: #666;
+		margin-top: 30px;
+		margin-bottom: 10px;
+	}
+	
+	.cfdtl p {
+		margin-bottom: 20px;
+		text-indent: 50px;
+	}
+	
+	.cfdtl a {
+		color: #007BFF;
+		text-decoration: none;
+	}
+	
+	.cfdtl a:hover {
+		color: #0056b3;
+	}
