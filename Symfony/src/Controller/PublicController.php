@@ -6,6 +6,8 @@ use App\Form\SellingFormType;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\Users;
+use App\Entity\Favoris;
+use App\Repository\FavorisRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -144,13 +146,30 @@ class PublicController extends AbstractController
         return $this->render('public/editprofile.html.twig', [
         ]);
     }
-
+    
     #[Route('/favoris', name: 'app_favoris')]
-    public function favoris(): Response
+    public function favoris(EntityManagerInterface $em, FavorisRepository $favorisRepository): Response
     {
-        return $this->render('public/favoris.html.twig', [
-            'controller_name' => 'PublicController',
-        ]);
+        $user = $this->getUser(); // get the current user
+        $favoris = $favorisRepository->findBy(['users' => $user]);
+
+        return $this->render('public/favoris.html.twig', ['favoris' => $favoris]);
+    }
+
+    #[Route('/favoris/ajouter/{productId}', name: 'app_favoris_ajouter')]
+    public function ajouter($productId, EntityManagerInterface $em, ProductRepository $productRepository)
+    {
+        $user = $this->getUser(); // get the current user
+        $product = $productRepository->find($productId);
+
+        $favori = new Favoris();
+        $favori->setUsers($user);
+        $favori->setProducts($product);
+
+        $em->persist($favori);
+        $em->flush();
+
+        return $this->redirectToRoute('app_favoris');
     }
 
 }

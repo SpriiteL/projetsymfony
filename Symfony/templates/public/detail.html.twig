@@ -30,7 +30,7 @@
                                     <h3>{{product.price}}€</h3>
                                     <p>{{product.description}}</p>
                                     <div class="product__details__btns__option">
-                                        <a href="#"><i class="fa fa-heart"></i> Ajouter aux Favoris</a>
+                                        <a href="{{ path('app_favoris_ajouter', {'productId': product.id}) }}"><i class="fa fa-heart"></i> Ajouter aux Favoris</a>
                                     </div>
                                     <div class="product__details__last__option">
                                         <h5><span>Livraison Garantie !</span></h5>

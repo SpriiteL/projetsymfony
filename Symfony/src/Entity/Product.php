@@ -54,12 +54,16 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imagefile = null;
 
+    #[ORM\OneToMany(mappedBy: 'products', targetEntity: Favoris::class)]
+    private Collection $favoris;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->photos = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -279,6 +283,36 @@ class Product
     public function setImagefile(?string $imagefile): static
     {
         $this->imagefile = $imagefile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): static
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->setProducts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): static
+    {
+        if ($this->favoris->removeElement($favori)) {
+            // set the owning side to null (unless already changed)
+            if ($favori->getProducts() === $this) {
+                $favori->setProducts(null);
+            }
+        }
 
         return $this;
     }

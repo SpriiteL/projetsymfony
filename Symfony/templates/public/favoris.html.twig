@@ -1,2 +1,12 @@
-{% extends 'base.html.twig'%}
+{% extends 'base.html.twig' %}
 
+{% block body %}
+
+    {% for favori in favoris %}
+        <div class="item">
+            <h2>{{ favori.products.title }}</h2>
+            <!-- other product details... -->
+        </div>
+    {% endfor %}
+
+{% endblock %}
