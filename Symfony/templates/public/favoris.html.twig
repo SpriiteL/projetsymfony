@@ -11,7 +11,7 @@
                 <div class="product__item sale">
                     <div class="product__item__pic set-bg" data-setbg="/img/product/{{favori.products.imagefile}}" style="background-image: url(&quot;/img/product/{{favori.products.imagefile}}&quot;);">
                         <ul class="product__hover">
-                            <li><a href="#"><img src="{{asset ('img/icon/heart.png')}}" alt=""></a></li>
+                            <li><a href="{{ path('app_favoris_supprimer', {'favoriId': favori.id}) }}"><img src="{{asset ('img/icon/croix.png')}}" alt=""></a></li>
                         </ul>
                     </div>
                     <div class="product__item__text">

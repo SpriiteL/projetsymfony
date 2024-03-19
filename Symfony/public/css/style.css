@@ -4192,3 +4192,8 @@ background-color: #0056b3; /* Assombrir légèrement le bleu au survol */
 		font-weight: bold;
 		margin-left: 10px;
 	}
+
+	.croix{
+		height: 20px;
+		width: 20px;
+	}

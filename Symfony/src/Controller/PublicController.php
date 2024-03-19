@@ -146,7 +146,7 @@ class PublicController extends AbstractController
         return $this->render('public/editprofile.html.twig', [
         ]);
     }
-    
+
     #[Route('/favoris', name: 'app_favoris')]
     public function favoris(EntityManagerInterface $em, FavorisRepository $favorisRepository): Response
     {
@@ -169,6 +169,19 @@ class PublicController extends AbstractController
         $em->persist($favori);
         $em->flush();
 
+        return $this->redirectToRoute('app_favoris');
+    }
+
+    #[Route('/favoris/supprimer/{favoriId}', name: 'app_favoris_supprimer')]
+    public function supprimerDesFavoris($favoriId, EntityManagerInterface $em, FavorisRepository $favorisRepository): Response
+    {
+        $favori = $favorisRepository->find($favoriId); // get the favori
+
+        // remove the favori from the database
+        $em->remove($favori);
+        $em->flush();
+
+        // redirect to the favoris page
         return $this->redirectToRoute('app_favoris');
     }
 
