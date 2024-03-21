@@ -177,23 +177,31 @@ class PublicController extends AbstractController
     }
 
     #[Route('/favoris/ajouter/{productId}', name: 'app_favoris_ajouter')]
-    public function ajouter($productId, EntityManagerInterface $em, ProductRepository $productRepository)
+    public function ajouter($productId, EntityManagerInterface $em, ProductRepository $productRepository, FavorisRepository $favorisRepository, Request $request)
     {
         $user = $this->getUser(); // get the current user
         $product = $productRepository->find($productId);
 
-        $favori = new Favoris();
-        $favori->setUsers($user);
-        $favori->setProducts($product);
+        // Check if the product is already in the user's favorites
+        $favori = $favorisRepository->findOneBy(['users' => $user, 'products' => $product]);
 
-        $em->persist($favori);
+        if ($favori) {
+            // If it is, remove it
+            $em->remove($favori);
+        } else {
+            // If it's not, add it
+            $favori = new Favoris();
+            $favori->setUsers($user);
+            $favori->setProducts($product);
+            $em->persist($favori);
+        }
+
         $em->flush();
-
-        return $this->redirectToRoute('app_favoris');
+        return $this->redirect($request->headers->get('referer'));
     }
 
     #[Route('/favoris/supprimer/{favoriId}', name: 'app_favoris_supprimer')]
-    public function supprimerDesFavoris($favoriId, EntityManagerInterface $em, FavorisRepository $favorisRepository): Response
+    public function supprimerDesFavoris($favoriId, EntityManagerInterface $em, FavorisRepository $favorisRepository, Request $request): Response
     {
         $favori = $favorisRepository->find($favoriId); // get the favori
 
@@ -202,7 +210,7 @@ class PublicController extends AbstractController
         $em->flush();
 
         // redirect to the favoris page
-        return $this->redirectToRoute('app_favoris');
+        return $this->redirect($request->headers->get('referer'));
     }
 // mentions legales
     #[Route('/pcfdtl', name: 'app_politiquecfdtl')]
