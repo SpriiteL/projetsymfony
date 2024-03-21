@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\SellingFormType;
+use App\Form\EditProfilType;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\Users;
@@ -161,9 +162,22 @@ class PublicController extends AbstractController
     }
 
     #[Route('/editprofile', name: 'app_edit_profile')]
-    public function editProfile(): Response
+    public function editProfile(Request $request): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(EditProfilType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // handle the entities that were modified by the form (usually a flush is enough)
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_profile');
+        }
+
         return $this->render('public/editprofile.html.twig', [
+            'editProfileForm' => $form->createView(),
         ]);
     }
 // favoris
