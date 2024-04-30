@@ -10,12 +10,12 @@
 	order vulcain after reverse_proxy
 	order php_server before file_server
 
-	auto_https off
+	
 }
 
 {$CADDY_EXTRA_CONFIG}
 
-{$SERVER_NAME:10.187.22.35} {
+http://10.187.22.35:80 {
 	log {
 		# Redact the authorization query parameter that can be set by Mercure
 		format filter {
@@ -31,22 +31,63 @@
 	root * /app/public
 	encode zstd br gzip
 
-	mercure {
-		# Transport to use (default to Bolt)
-		transport_url {$MERCURE_TRANSPORT_URL:bolt:///data/mercure.db}
-		# Publisher JWT key
-		publisher_jwt {env.MERCURE_PUBLISHER_JWT_KEY} {env.MERCURE_PUBLISHER_JWT_ALG}
-		# Subscriber JWT key
-		subscriber_jwt {env.MERCURE_SUBSCRIBER_JWT_KEY} {env.MERCURE_SUBSCRIBER_JWT_ALG}
-		# Allow anonymous subscribers (double-check that it's what you want)
-		anonymous
-		# Enable the subscription API (double-check that it's what you want)
-		subscriptions
-		# Extra directives
-		{$MERCURE_EXTRA_DIRECTIVES}
+	
+
+	{$CADDY_SERVER_EXTRA_DIRECTIVES}
+
+	# Disable Topics tracking if not enabled explicitly: https://github.com/jkarlin/topics
+	header ?Permissions-Policy "browsing-topics=()"
+
+	php_server
+
+	
+}
+
+http://localhost:80 {
+	log {
+		# Redact the authorization query parameter that can be set by Mercure
+		format filter {
+			wrap console
+			fields {
+				uri query {
+					replace authorization REDACTED
+				}
+			}
+		}
 	}
 
-	vulcain
+	root * /app/public
+	encode zstd br gzip
+
+	
+
+	{$CADDY_SERVER_EXTRA_DIRECTIVES}
+
+	# Disable Topics tracking if not enabled explicitly: https://github.com/jkarlin/topics
+	header ?Permissions-Policy "browsing-topics=()"
+
+	php_server
+
+	
+}
+
+http://std35.beaupeyrat.com:80 {
+	log {
+		# Redact the authorization query parameter that can be set by Mercure
+		format filter {
+			wrap console
+			fields {
+				uri query {
+					replace authorization REDACTED
+				}
+			}
+		}
+	}
+
+	root * /app/public
+	encode zstd br gzip
+
+	
 
 	{$CADDY_SERVER_EXTRA_DIRECTIVES}
 
