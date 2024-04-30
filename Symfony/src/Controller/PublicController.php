@@ -81,9 +81,13 @@ class PublicController extends AbstractController
     }
 // Contact
     #[Route('/contact', name: 'app_contact')]
-    public function contact(): Response
+    public function contact(Request $request): Response
     {
-        return $this->render('public/contact.html.twig', [
+        if ($request->isMethod('POST')) {
+            // Handle the form submission
+        }
+
+        return $this->render('contactcontent.html.twig', [
             'controller_name' => 'PublicController',
         ]);
     }
@@ -98,6 +102,7 @@ class PublicController extends AbstractController
 
         // Récupérer les produits favoris de l'utilisateur
         $favorisProducts = [];
+        $favoris = [];
         if ($user) {
             $favoris = $favorisRepository->findBy(['users' => $user]);
             foreach ($favoris as $favori) {

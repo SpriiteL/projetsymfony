@@ -1,3 +1,7 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -18,7 +22,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="public/contact.php" method="post">
+                       <form action="{{ path('app_contact') }}" method="post">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input type="text" name="nom" placeholder="Nom">
@@ -37,4 +41,4 @@
             </div>
         </div>
     </section>
-    
+{% endblock %}
