@@ -23,6 +23,9 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $products;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Product $product = null;
+
     public function __toString(): String{
         $nameParts = [];
         if($this->category_name){
@@ -84,6 +87,18 @@ class Category
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): static
+    {
+        $this->product = $product;
 
         return $this;
     }
